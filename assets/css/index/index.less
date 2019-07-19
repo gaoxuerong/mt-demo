@@ -1,0 +1,217 @@
+.page-index {
+  .m-menu {
+    width: 250px;
+    height: 475px;
+    box-sizing: border-box;
+    margin-top: -56px;
+    color: #fff;
+    position: relative;
+    background: linear-gradient(
+      -180deg,
+      rgba(2, 181, 157, 0.85) 2%,
+      rgba(22, 146, 183, 0.85) 100%
+    );
+
+    dl {
+      margin: 6px 0 0 0;
+    }
+
+    dt {
+      height: 56px;
+      padding-top: 15px;
+      box-sizing: border-box;
+      font-size: 16px;
+      font-weight: 400;
+      margin-left: 15px;
+    }
+
+    dd {
+      position: relative;
+      box-sizing: border-box;
+      padding: 2px 12px;
+      height: 26px;
+      margin: 0;
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+
+        & > i {
+          opacity: 1;
+        }
+      }
+    }
+
+    .nav {
+      dd > i {
+        font-family: 'meituan';
+        font-size: 14px;
+        font-style: normal;
+        opacity: 0.3;
+        margin-right: 11px;
+
+        &:before {
+          width: 14px;
+          height: 14px;
+          display: inline-block;
+        }
+      }
+
+      .food {
+        &:before {
+          content: '\e622';
+        }
+      }
+
+      .takeout {
+        &:before {
+          content: '\e630';
+        }
+      }
+
+      .hotel {
+        &:before {
+          content: '\e62a';
+        }
+      }
+
+      .homestay {
+        &:before {
+          content: '\e631';
+        }
+      }
+
+      .movie {
+        &:before {
+          content: '\e62c';
+          position: relative;
+          left: -2px;
+        }
+      }
+
+      .airport {
+        &:before {
+          content: '\e632';
+        }
+      }
+
+      .ktv {
+        &:before {
+          content: '\e627';
+        }
+      }
+
+      .life {
+        &:before {
+          content: '\e633';
+        }
+      }
+
+      .hair {
+        &:before {
+          content: '\e626';
+          transform: scale(0.7);
+        }
+      }
+
+      .marry {
+        &:before {
+          content: '\e629';
+        }
+      }
+
+      .offspring {
+        &:before {
+          content: '\e623';
+        }
+      }
+
+      .sport {
+        &:before {
+          content: '\e62b';
+        }
+      }
+
+      .furniture {
+        &:before {
+          content: '\e625';
+        }
+      }
+
+      .study {
+        &:before {
+          content: '\e624';
+        }
+      }
+
+      .health {
+        &:before {
+          content: '\e628';
+        }
+      }
+
+      .bar {
+        &:before {
+          content: '\e621';
+        }
+      }
+
+      .arrow {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 13px;
+        margin: auto;
+        width: 4px;
+        height: 4px;
+        border-bottom: 1px solid #fff;
+        border-right: 1px solid #fff;
+        transform: rotate(-45deg);
+      }
+    }
+
+    .detail {
+      position: absolute;
+      left: 250px;
+      top: 50px;
+      padding: 0 30px;
+      width: 400px;
+      height: 416px;
+      color: #999;
+      background: rgb(238, 232, 232);
+      z-index: 9999;
+
+      h4 {
+        margin-top: 24px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #3b3535;
+        height: 22px;
+        line-height: 22px;
+      }
+
+      span {
+        display: inline-block;
+        margin-right: 16px;
+        margin-top: 10px;
+        line-height: 15px;
+        font-size: 12px;
+        color: #999;
+        cursor: pointer;
+
+        &:hover {
+          color: #31bbac;
+        }
+      }
+    }
+  }
+
+  .slide {
+    height: 240px;
+    margin: 10px;
+
+    img {
+      height: 240px;
+    }
+  }
+}
