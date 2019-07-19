@@ -18,7 +18,7 @@ export default {
   }
 }
 </script>
-<style lang="css">
+<style lang="less">
 
 </style>
 
