@@ -1,5 +1,5 @@
-export default {
-  dbs: 'mongodb://127.0.0.1:27017/student',
+const dbConfig =  {
+  dbs: 'mongodb://127.0.0.1:27017/mt-demo',
   redis: {
     get host() {
       return '127.0.0.1'
@@ -35,3 +35,5 @@ export default {
   sign: 'a3c9fe0782107295ee9f1709edd15218', // 请求线上作者定义的数据才用到
   requestUrl: 'http://cp-tools.cn' // 请求线上作者定义的数据才用到
 }
+
+module.exports = dbConfig

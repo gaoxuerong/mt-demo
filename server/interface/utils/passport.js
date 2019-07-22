@@ -1,8 +1,8 @@
 const passport = require('koa-passport')
 const LocalStrategy = require('passport-local')
-const UserModel = require('../../dbs/models/users')
+const UserModel = require('../../dbs/models/users.js')
 
-passport.use( // [Configure Strategy](https://www.npmjs.com/package/passport-local)
+passport.use(
   new LocalStrategy(async function(username, password, done) {
     const where = { username }
     const result = await UserModel.findOne(where)
@@ -18,7 +18,7 @@ passport.use( // [Configure Strategy](https://www.npmjs.com/package/passport-loc
   })
 )
 
-passport.serializeUser(function(user, done) { // User information is retained in session, defulat
+passport.serializeUser(function(user, done) {
   done(null, user)
 })
 
@@ -26,4 +26,4 @@ passport.deserializeUser(function(user, done) {
   return done(null, user)
 })
 
-export default passport
+module.exports = passport

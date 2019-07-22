@@ -1,4 +1,4 @@
-﻿import mongoose from 'mongoose'
+﻿const mongoose =require('mongoose')
 
 const Schema = mongoose.Schema
 const Order = new Schema({
@@ -32,4 +32,4 @@ const Order = new Schema({
   }
 })
 
-export default mongoose.model('Order', Order)
+module.exports =  mongoose.model('Order', Order)

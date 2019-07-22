@@ -1,4 +1,4 @@
-﻿import mongoose from 'mongoose'
+﻿const mongoose =require('mongoose')
 
 const Schema = mongoose.Schema
 const ResultsByKeywords = new Schema({
@@ -12,4 +12,4 @@ const ResultsByKeywords = new Schema({
   }
 })
 
-export default mongoose.model('ResultsByKeywords', ResultsByKeywords)
+module.exports =  mongoose.model('ResultsByKeywords', ResultsByKeywords)

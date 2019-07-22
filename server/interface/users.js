@@ -144,7 +144,7 @@ router.post('/verify', async(ctx, next) => {
     subject: '《慕课网高仿美团网全栈实战》注册码',
     html: `您在《慕课网高仿美团网全栈实战》课程中注册，您的邀请码是${ko.code}`
   }
-  await transporter.sendMail(mailOptions, (err, info) => { // send email
+  await transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
       return console.log(err)
     } else {
@@ -193,4 +193,4 @@ router.get('/getUser', async ctx => {
   }
 })
 
-export default router
+module.exports = router

@@ -1,10 +1,10 @@
-﻿import Router from 'koa-router'
-// import Config from '../dbs/config'
-// import axios from './utils/axios'
-import Province from '../dbs/models/province'
-import Menu from '../dbs/models/menu'
-import City from '../dbs/models/city'
-import Positon from '../dbs/models/position'
+﻿const Router =require('koa-router')
+// const Config =require('../dbs/config')
+// const axios =require('./utils/axios')
+const Province =require('../dbs/models/province')
+const Menu =require('../dbs/models/menu')
+const City =require('../dbs/models/city')
+const Positon =require('../dbs/models/position')
 
 const router = new Router({
   prefix: '/geo'
@@ -155,4 +155,4 @@ router.get('/hotCity', async ctx => {
   // }
 })
 
-export default router
+module.exports = router

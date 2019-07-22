@@ -1,4 +1,4 @@
-﻿import mongoose from 'mongoose'
+﻿const mongoose =require('mongoose')
 
 const Schema = mongoose.Schema
 const Menu = new Schema({
@@ -8,4 +8,4 @@ const Menu = new Schema({
   }
 })
 
-export default mongoose.model('Menu', Menu)
+module.exports =  mongoose.model('Menu', Menu)
