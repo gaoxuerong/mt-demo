@@ -1,19 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import geo from './modules/geo'
-import home from './modules/home'
-import search from './modules/search'
-
 Vue.use(Vuex)
 
-const store = () =>
+export const store = () =>
   new Vuex.Store({
-    modules: {
-      geo,
-      home,
-      search
-    },
     actions: {
       async nuxtServerInit({ commit }, { req, app }) { // nuxtServerInit 将服务端的一些数据传到客户端
         {
@@ -44,5 +35,3 @@ const store = () =>
       }
     }
   })
-
-export default store

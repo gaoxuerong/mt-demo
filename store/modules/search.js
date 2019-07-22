@@ -1,22 +1,15 @@
-﻿const state = () => ({
+﻿export const state = () => ({
   hotPlace: []
 })
 
-const mutations = {
+export const mutations = {
   setHotPlace(state, val) {
     state.hotPlace = val
   }
 }
 
-const actions = {
+export const actions = {
   setHotPlace({ commit }, hotPlace) {
     commit('setHotPlace', hotPlace)
   }
-}
-
-export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions
 }
