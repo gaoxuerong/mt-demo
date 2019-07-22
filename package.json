@@ -31,7 +31,8 @@
     "mongoose": "^5.6.5",
     "nodemailer": "^6.3.0",
     "nuxt": "^2.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

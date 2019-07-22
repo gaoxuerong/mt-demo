@@ -18,7 +18,8 @@ router.get('/getPosition', async ctx => {
     province: result.province,
     city: result.city
   }
-  // Online service
+})
+
   // const {
   //   status,
   //   data: { province, city }
@@ -34,7 +35,6 @@ router.get('/getPosition', async ctx => {
   //     city: ''
   //   }
   // }
-})
 
 // [postman](http://localhost:3000/geo/menu)
 router.get('/menu', async ctx => {
