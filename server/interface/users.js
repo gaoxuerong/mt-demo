@@ -1,10 +1,10 @@
 const Router = require('koa-router')
-const Redis =  require('koa-redis')
+const Redis = require('koa-redis')
 const nodeMailer = require('nodemailer')
 
 const User = require('../dbs/models/users')
-const Passport = require('./utils/passport')
 const Email = require('../dbs/config')
+const Passport = require('./utils/passport')
 const axios = require('./utils/axios')
 
 const router = new Router({
@@ -12,7 +12,7 @@ const router = new Router({
 })
 const Store = new Redis().client
 
-router.post('/signup', async ctx => {
+router.post('/signup', async (ctx) => {
   const {
     username,
     email,
@@ -80,26 +80,24 @@ router.post('/signup', async ctx => {
   }
 })
 
-router.post('/signin', async(ctx, next) => {
-  return Passport.authenticate('local', function(err, user, info, status) {
+router.post('/signin', (ctx, next) => {
+  return Passport.authenticate('local', function (err, user, info, status) {
     if (err) {
       ctx.body = {
         code: -1,
         msg: err
       }
+    } else if (user) {
+      ctx.body = {
+        code: 0,
+        msg: '登录成功',
+        user
+      }
+      return ctx.login(user)
     } else {
-      if (user) {
-        ctx.body = {
-          code: 0,
-          msg: '登录成功',
-          user
-        }
-        return ctx.login(user)
-      } else {
-        ctx.body = {
-          code: 1,
-          msg: info
-        }
+      ctx.body = {
+        code: 1,
+        msg: info
       }
     }
   })(ctx, next)
@@ -113,7 +111,7 @@ router.post('/signin', async(ctx, next) => {
 //   }
 // })
 
-router.post('/verify', async(ctx, next) => {
+router.post('/verify', async (ctx, next) => {
   const { username } = ctx.request.body // register.vue pass parameter
   const saveExpire = await Store.hget(`nodemail:${username}`, 'expire')
   if (saveExpire && new Date().getTime() - saveExpire < 0) {
@@ -146,7 +144,6 @@ router.post('/verify', async(ctx, next) => {
   }
   await transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      return console.log(err)
     } else {
       Store.hmset( // redis save user info
         `nodemail:${ko.user}`,
@@ -165,7 +162,7 @@ router.post('/verify', async(ctx, next) => {
   }
 })
 
-router.get('/exit', async(ctx, next) => {
+router.get('/exit', async (ctx, next) => {
   await ctx.logout()
   if (!ctx.isAuthenticated()) { // isAuthenticated: Determine whether to authenticate (Check if it is currently logged in)
     ctx.body = {
@@ -178,7 +175,7 @@ router.get('/exit', async(ctx, next) => {
   }
 })
 
-router.get('/getUser', async ctx => {
+router.get('/getUser', (ctx) => {
   if (ctx.isAuthenticated()) {
     const { username, email } = ctx.session.passport.user // ctx.session.passport.user: get passport-koa user name and password
     ctx.body = {

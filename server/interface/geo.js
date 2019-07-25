@@ -1,10 +1,10 @@
-﻿const Router =require('koa-router')
+const Router = require('koa-router')
 // const Config =require('../dbs/config')
 // const axios =require('./utils/axios')
-const Province =require('../dbs/models/province')
-const Menu =require('../dbs/models/menu')
-const City =require('../dbs/models/city')
-const Positon =require('../dbs/models/position')
+const Province = require('../dbs/models/province')
+const Menu = require('../dbs/models/menu')
+const City = require('../dbs/models/city')
+const Positon = require('../dbs/models/position')
 
 const router = new Router({
   prefix: '/geo'
@@ -12,7 +12,7 @@ const router = new Router({
 // const sign = Config.sign
 
 // [postman](http://localhost:3000/geo/getPosition)
-router.get('/getPosition', async ctx => {
+router.get('/getPosition', async (ctx) => {
   const result = await Positon.findOne() // Operating a local database
   ctx.body = {
     province: result.province,
@@ -20,24 +20,24 @@ router.get('/getPosition', async ctx => {
   }
 })
 
-  // const {
-  //   status,
-  //   data: { province, city }
-  // } = await axios.get(`${Config.requestUrl}/geo/getPosition?sign=${sign}`)
-  // if (status === 200) {
-  //   ctx.body = {
-  //     province,
-  //     city
-  //   }
-  // } else {
-  //   ctx.body = {
-  //     province: '',
-  //     city: ''
-  //   }
-  // }
+// const {
+//   status,
+//   data: { province, city }
+// } = await axios.get(`${Config.requestUrl}/geo/getPosition?sign=${sign}`)
+// if (status === 200) {
+//   ctx.body = {
+//     province,
+//     city
+//   }
+// } else {
+//   ctx.body = {
+//     province: '',
+//     city: ''
+//   }
+// }
 
 // [postman](http://localhost:3000/geo/menu)
-router.get('/menu', async ctx => {
+router.get('/menu', async (ctx) => {
   const result = await Menu.findOne()
   ctx.body = {
     menu: result.menu
@@ -58,10 +58,10 @@ router.get('/menu', async ctx => {
 })
 
 // [postman](http://localhost:3000/geo/province)
-router.get('/province', async ctx => {
+router.get('/province', async (ctx) => {
   const result = await Province.find()
   ctx.body = {
-    province: result.map(item => {
+    province: result.map((item) => {
       return {
         id: item.id,
         name: item.value[0]
@@ -78,11 +78,11 @@ router.get('/province', async ctx => {
 })
 
 // [postman](http://localhost:3000/geo/province/110000)
-router.get('/province/:id', async ctx => { // Get the corresponding province city
+router.get('/province/:id', async (ctx) => { // Get the corresponding province city
   const result = await City.findOne({ id: ctx.params.id })
   ctx.body = {
     code: 0,
-    city: result.value.map(item => {
+    city: result.value.map((item) => {
       return { province: item.province, id: item.id, name: item.name }
     })
   }
@@ -104,10 +104,10 @@ router.get('/province/:id', async ctx => { // Get the corresponding province cit
 })
 
 // [postman](http://localhost:3000/geo/city)
-router.get('/city', async ctx => {
+router.get('/city', async (ctx) => {
   const result = await City.find()
   ctx.body = {
-    city: result.map(item => {
+    city: result.map((item) => {
       return {
         value: item.value
       }
@@ -129,10 +129,10 @@ router.get('/city', async ctx => {
 })
 
 // [postman](http://localhost:3000/geo/city)
-router.get('/hotCity', async ctx => {
+router.get('/hotCity', async (ctx) => {
   const result = await City.find() // bug! Did not return the full city name
   ctx.body = {
-    city: result.map(item => {
+    city: result.map((item) => {
       const value = item.value
       const valueArray = [...value]
       return {

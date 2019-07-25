@@ -1,4 +1,4 @@
-﻿import Router from 'koa-router'
+import Router from 'koa-router'
 // import axios from './utils/axios'
 // import Config from '../dbs/config'
 import Categroy from '../dbs/models/category'
@@ -9,7 +9,7 @@ const router = new Router({
 // const sign = Config.sign
 
 // products.vue
-router.get('/crumbs', async ctx => {
+router.get('/crumbs', async (ctx) => {
   // Operating a local database
   const result = await Categroy.findOne({
     city: ctx.query.city

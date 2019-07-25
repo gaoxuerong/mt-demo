@@ -1,13 +1,13 @@
-﻿import Router from 'koa-router'
+import Router from 'koa-router'
+import md5 from 'crypto-js/md5'
 import Order from '../dbs/models/order'
 import Cart from '../dbs/models/cart'
 // 加密
-import md5 from 'crypto-js/md5'
 
 const router = new Router({ prefix: '/order' })
 
 // 创建购物车分类栏
-router.post('/createOrder', async(ctx) => {
+router.post('/createOrder', async (ctx) => {
   const { id, price, count } = ctx.request.body
   const time = Date()
   const orderID = md5(Math.random() * 1000 + time).toString()
@@ -51,7 +51,7 @@ router.post('/createOrder', async(ctx) => {
 })
 
 // 获取购物车分类栏
-router.post('/getOrders', async ctx => {
+router.post('/getOrders', async (ctx) => {
   // isAuthenticated 是否登录
   if (!ctx.isAuthenticated()) {
     ctx.body = {

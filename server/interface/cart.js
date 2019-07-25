@@ -1,12 +1,12 @@
-﻿import Router from 'koa-router'
-import Cart from '../dbs/models/cart'
+import Router from 'koa-router'
 import md5 from 'crypto-js/md5' // encryption
+import Cart from '../dbs/models/cart'
 
 const router = new Router({
   prefix: '/cart'
 })
 
-router.post('/create', async ctx => {
+router.post('/create', async (ctx) => {
   if (!ctx.isAuthenticated()) { // isAuthenticated Whether to log in
     ctx.body = {
       code: -1,
@@ -15,7 +15,7 @@ router.post('/create', async ctx => {
   } else {
     const time = Date() // Date: For the same time zone
     const cartNo = md5(Math.random() * 1000 + time).toString()
-    const { params: { id, detail }} = ctx.request.body // ctx.request.body: post Way to get data
+    const { params: { id, detail } } = ctx.request.body // ctx.request.body: post Way to get data
     const cart = new Cart({
       id,
       cartNo,
@@ -39,7 +39,7 @@ router.post('/create', async ctx => {
   }
 })
 
-router.post('/getCart', async ctx => {
+router.post('/getCart', async (ctx) => {
   const { id } = ctx.request.body
   try {
     const result = await Cart.findOne({ cartNo: id })

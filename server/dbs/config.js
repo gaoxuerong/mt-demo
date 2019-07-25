@@ -1,4 +1,4 @@
-const dbConfig =  {
+const dbConfig = {
   dbs: 'mongodb://127.0.0.1:27017/mt-demo',
   redis: {
     get host() {

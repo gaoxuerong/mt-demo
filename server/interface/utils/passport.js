@@ -3,7 +3,7 @@ const LocalStrategy = require('passport-local')
 const UserModel = require('../../dbs/models/users.js')
 
 passport.use(
-  new LocalStrategy(async function(username, password, done) {
+  new LocalStrategy(async function (username, password, done) {
     const where = { username }
     const result = await UserModel.findOne(where)
     if (result !== null) {
@@ -18,11 +18,11 @@ passport.use(
   })
 )
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user)
 })
 
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser(function (user, done) {
   return done(null, user)
 })
 

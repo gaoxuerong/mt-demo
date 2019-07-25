@@ -1,4 +1,4 @@
-﻿const mongoose =require('mongoose')
+const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 const City = new Schema({
@@ -12,4 +12,4 @@ const City = new Schema({
   }
 })
 
-module.exports =  mongoose.model('City', City)
+module.exports = mongoose.model('City', City)

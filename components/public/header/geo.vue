@@ -1,7 +1,7 @@
 <template>
   <div class="m-geo">
     <i class="el-icon-location" />
-    {{ $store.state.geo }}
+    {{ $store.state.modules.geo.position }}
     <nuxt-link
       class="changeCity"
       to="/changeCity"

@@ -1,4 +1,4 @@
-﻿const mongoose =require('mongoose')
+const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 const PositionSchema = new Schema({
@@ -12,4 +12,4 @@ const PositionSchema = new Schema({
   }
 })
 
-module.exports =  mongoose.model('Position', PositionSchema)
+module.exports = mongoose.model('Position', PositionSchema)

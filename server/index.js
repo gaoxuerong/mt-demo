@@ -5,10 +5,11 @@ const bodyParser = require('koa-bodyparser') // Parsing the middleware of the bo
 const session = require('koa-generic-session') // supports Delay session getter
 const Redis = require('koa-redis') // Redis storage for koa session middleware/cache.
 const json = require('koa-json')
+const { Nuxt, Builder } = require('nuxt')
+const config = require('../nuxt.config.js')
 const dbConfig = require('./dbs/config.js')
 const passport = require('./interface/utils/passport.js')
 const users = require('./interface/users.js')
-const { Nuxt, Builder } = require('nuxt')
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
@@ -41,7 +42,6 @@ mongoose.connect(
   }
 )
 
-const config = require('../nuxt.config.js')
 config.dev = !(app.env === 'production')
 
 async function start() {
@@ -56,7 +56,7 @@ async function start() {
     return new Promise((resolve, reject) => {
       ctx.res.on('close', resolve)
       ctx.res.on('finish', resolve)
-      nuxt.render(ctx.req, ctx.res, promise => {
+      nuxt.render(ctx.req, ctx.res, (promise) => {
         promise.then(resolve).catch(reject)
       })
     })
