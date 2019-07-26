@@ -14,3 +14,6 @@
 export const state = {
   userName: '111'
 }
+export const actions = {
+  userName: '111'
+}
