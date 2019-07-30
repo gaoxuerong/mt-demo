@@ -1,14 +1,16 @@
-﻿<template>
+<template>
   <div class="m-order">
     <ul>
       <li v-if="cur.length">
         <el-row
           v-for="(item, idx) in cur"
-          :key="idx">
+          :key="idx"
+        >
           <el-col :span="4">
             <img
               :src="item.img"
-              alt="">
+              alt=""
+            >
           </el-col>
           <el-col :span="10">
             <h4>{{ item.name }}</h4>
@@ -24,7 +26,8 @@
       </li>
       <li
         v-else
-        class="empty">
+        class="empty"
+      >
         没有订单
       </li>
     </ul>
@@ -44,7 +47,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/css/order/index.scss";
+<style lang="less">
+@import "../../assets/css/order/index.less";
 </style>
-

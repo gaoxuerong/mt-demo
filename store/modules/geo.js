@@ -1,8 +1,8 @@
-﻿export const state = () => ({
-  position: '北京'
+﻿const state = () => ({
+  position: {}
 })
 
-// export const mutations = {
+// const mutations = {
 //   setPosition(state, val) {
 //     state.position = val
 //   },
@@ -14,8 +14,14 @@
 //   }
 // }
 
-// export const actions = {
-//   setPosition: ({ commit }, position) => {
-//     commit('setPosition', position)
-//   }
-// }
+const actions = {
+  setPosition: ({ commit }, position) => {
+    commit('setPosition', position)
+  }
+}
+
+export default {
+  namespaced: true,
+  state,
+  actions
+}

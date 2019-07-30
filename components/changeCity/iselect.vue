@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="m-iselect">
     <span class="name">按省份选择:</span>
     <el-select
@@ -52,10 +52,10 @@ export default {
     }
   },
   watch: {
-    pvalue: async function(newPvalue) {
-      const { status, data: { city }} = await this.$axios.get(`/geo/province/${newPvalue}`)
+    pvalue: async function (newPvalue) {
+      const { status, data: { city } } = await this.$axios.get(`/geo/province/${newPvalue}`)
       if (status === 200) {
-        this.city = city.map(item => {
+        this.city = city.map((item) => {
           return {
             value: item.id,
             label: item.name
@@ -65,10 +65,10 @@ export default {
       }
     }
   },
-  mounted: async function() {
-    const { status, data: { province }} = await this.$axios.get('/geo/province')
+  mounted: async function () {
+    const { status, data: { province } } = await this.$axios.get('/geo/province')
     if (status === 200) {
-      this.province = province.map(item => {
+      this.province = province.map((item) => {
         return {
           value: item.id,
           label: item.name
@@ -80,12 +80,12 @@ export default {
     ...mapMutations({
       setPosition: 'geo/setPosition'
     }),
-    querySearchAsync: _.debounce(async function(query, cb) { // _.debounce() Delay function
+    querySearchAsync: _.debounce(async function (query, cb) { // _.debounce() Delay function
       if (this.cities.length) {
         cb(this.cities.filter(item => item.value.indexOf(query) > -1)) // Search 北 to show all data with 北
       } else {
         // const { status, data: { city }} = await this.$axios.get('/geo/city', { params: { city: this.cvalue }}) // Online data
-        const { status, data: { city }} = await this.$axios.get('/geo/city') // Localized data
+        const { status, data: { city } } = await this.$axios.get('/geo/city') // Localized data
         // console.log(city, -1)
         if (status === 200) {
           let wantArray
@@ -93,14 +93,14 @@ export default {
           for (const value of city) {
             wantArray = [...value.value]
             // console.log(wantArray, 2)
-            wantArray.map(item => {
+            wantArray.map((item) => {
               // console.log(item.name)
               wantCityArray.push(item.name)
               // console.log(wantCityArray)
             })
           }
           // console.log(wantCityArray, 3)
-          this.cities = wantCityArray.map(item => {
+          this.cities = wantCityArray.map((item) => {
             return {
               value: item
             }
@@ -108,28 +108,28 @@ export default {
           // console.log(this.cities, 4)
           cb(this.cities.filter(item => item.value.indexOf(query) > -1))
         } else {
-          cb([])
+          // cb([])
         }
       }
     }, 200),
     handleSelect(e) {
       this.$store.commit('geo/setCity', e.value)
     },
-    ShandleSelect: async function() {
+    ShandleSelect: async function () {
       // console.log(this.$refs.currentCity.value)
       const temp = this.$refs.currentCity.value
       const id = Math.floor(temp / 10000) * 10000
       // commons.app.js:331 GET http://localhost:3000/geo/province/0 500 (Internal Server Error)
-      const { status, data: { city }} = await this.$axios.get(`/geo/province/${id}`)
+      const { status, data: { city } } = await this.$axios.get(`/geo/province/${id}`)
       if (status === 200) {
-        const provinceCity = city.map(item => {
+        const provinceCity = city.map((item) => {
           return {
             id: item.id,
             name: item.name
           }
         })
         // console.log(provinceCity)
-        const currentCity = provinceCity.filter(item => {
+        const currentCity = provinceCity.filter((item) => {
           return item.id === temp
         })
         // console.log(currentCity[0].name)
@@ -140,6 +140,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/css/changeCity/iselect.scss";
+<style lang="less">
+@import "../../assets/css/changeCity/iselect.less";
 </style>

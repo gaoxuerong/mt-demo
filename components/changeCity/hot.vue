@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="m-hcity">
     <dl>
       <dt>热门城市：</dt>
@@ -6,7 +6,9 @@
         v-for="item in list"
         :key="item.id"
         @click="handleSelect(item.name)"
-      >{{ item.name }}</dd>
+      >
+        {{ item.name }}
+      </dd>
     </dl>
   </div>
 </template>
@@ -20,7 +22,7 @@ export default {
     }
   },
   async mounted() {
-    const { status, data: { city }} = await this.$axios.get('/geo/hotCity')
+    const { status, data: { city } } = await this.$axios.get('/geo/hotCity')
     if (status === 200) {
       let wantArray
       for (const value of city) {
@@ -44,6 +46,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/css/changeCity/hot.scss";
+<style lang="less">
+@import "../../assets/css/changeCity/hot.less";
 </style>

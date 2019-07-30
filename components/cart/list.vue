@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <el-table
     :data="cartData"
     style="width: 980px"

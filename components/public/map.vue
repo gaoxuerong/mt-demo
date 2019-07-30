@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div
     :id="id"
     :style="{ width:width + 'px', height:height + 'px', margin:'34px auto' }"
@@ -31,7 +31,7 @@ export default {
     }
   },
   watch: {
-    point: function(val, old) {
+    point: function (val, old) {
       this.map.setCenter(val)
       this.marker.setPosition(val)
     }

@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="m-product-categroy">
     <dl class="classic">
       <dt>分类</dt>
@@ -52,7 +52,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="less">
   .m-product-categroy{
     padding: 15px 20px 0;
     background: #FFF;

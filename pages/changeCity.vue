@@ -1,18 +1,18 @@
-﻿<template>
+<template>
   <div class="page-changeCity">
     <el-row>
       <el-col :span="24">
-        <iSelect/>
+        <iSelect />
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="24">
-        <hot/>
+        <hot />
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="24">
-        <category/>
+        <category />
       </el-col>
     </el-row>
   </div>

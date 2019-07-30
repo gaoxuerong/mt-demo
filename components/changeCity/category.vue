@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="">
     <dl class="m-categroy">
       <dt>按拼音首字母选择：</dt>
@@ -14,7 +14,9 @@
       :key="item.title"
       class="m-categroy-section"
     >
-      <dt :id="'city-'+item.title">{{ item.title }}</dt>
+      <dt :id="'city-'+item.title">
+        {{ item.title }}
+      </dt>
       <dd>
         <span
           v-for="(c, index) in item.city"
@@ -39,7 +41,7 @@ export default {
   },
   async mounted() {
     const blocks = []
-    const { status, data: { city }} = await this.$axios.get('/geo/city')
+    const { status, data: { city } } = await this.$axios.get('/geo/city')
     if (status === 200) {
       let p
       let c
@@ -82,6 +84,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/css/changeCity/categroy.scss";
+<style lang="less">
+@import "../../assets/css/changeCity/categroy.less";
 </style>

@@ -1,12 +1,12 @@
-﻿<template>
+<template>
   <el-row class="page-product">
     <el-col :span="19">
-      <crumbs :keyword="keyword"/>
+      <crumbs :keyword="keyword" />
       <category
         :types="types"
         :areas="areas"
       />
-      <list :list="list"/>
+      <list :list="list" />
     </el-col>
     <el-col :span="5">
       <amap
@@ -43,13 +43,13 @@ export default {
   async asyncData(ctx) {
     const keyword = ctx.query.keyword
     const city = ctx.store.state.geo.position.city
-    const { status, data: { count, pois }} = await ctx.$axios.get('/search/resultsByKeywords', {
+    const { status, data: { count, pois } } = await ctx.$axios.get('/search/resultsByKeywords', {
       params: {
         keyword,
         city
       }
     })
-    const { status: status2, data: { areas, types }} = await ctx.$axios.get('/category/crumbs', {
+    const { status: status2, data: { areas, types } } = await ctx.$axios.get('/category/crumbs', {
       params: {
         city
       }
@@ -59,7 +59,7 @@ export default {
     if (status === 200 && count > 0 && status2 === 200) {
       return {
         // Data without images is filtered out
-        list: pois.filter(item => item.photos.length).map(item => {
+        list: pois.filter(item => item.photos.length).map((item) => {
           return {
             type: item.type,
             img: item.photos[0].url,
@@ -84,6 +84,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/css/products/index.scss";
+<style lang="less">
+@import "../assets/css/products/index.less";
 </style>

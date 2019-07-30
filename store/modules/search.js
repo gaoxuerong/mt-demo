@@ -1,15 +1,22 @@
-// export const state = () => ({
-//   hotPlace: []
-// })
+const state = () => ({
+  hotPlace: []
+})
 
-// export const mutations = {
-//   setHotPlace(state, val) {
-//     state.hotPlace = val
-//   }
-// }
+const mutations = {
+  setHotPlace(state, val) {
+    state.hotPlace = val
+  }
+}
 
-// export const actions = {
-//   setHotPlace({ commit }, hotPlace) {
-//     commit('setHotPlace', hotPlace)
-//   }
-// }
+const actions = {
+  setHotPlace({ commit }, hotPlace) {
+    commit('setHotPlace', hotPlace)
+  }
+}
+
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions
+}

@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="page-detail">
     <el-row>
       <el-col :span="24">
@@ -10,7 +10,7 @@
     </el-row>
     <el-row>
       <el-col :span="24">
-        <summa :meta="product"/>
+        <summa :meta="product" />
       </el-col>
     </el-row>
     <el-row class="m-title">
@@ -61,7 +61,7 @@ export default {
     }
   },
   async asyncData(ctx) {
-    const { status, data: { product, more: list, login, type, keyword }} = await ctx.$axios.get('/search/products', {
+    const { status, data: { product, more: list, login, type, keyword } } = await ctx.$axios.get('/search/products', {
       params: {
         city: ctx.store.state.geo.position.city
       }
@@ -88,6 +88,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/css/detail/index.scss";
+<style lang="less">
+@import "../assets/css/detail/index.less";
 </style>

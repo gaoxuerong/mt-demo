@@ -1,7 +1,7 @@
 <template>
   <div class="m-geo">
     <i class="el-icon-location" />
-    {{ $store.state.modules.geo.position }}
+    {{ position.city }}
     <nuxt-link
       class="changeCity"
       to="/changeCity"
@@ -12,6 +12,10 @@
 </template>
 <script>
 export default {
-
+  computed: {
+    position() {
+      return this.$store.state.position
+    }
+  }
 }
 </script>

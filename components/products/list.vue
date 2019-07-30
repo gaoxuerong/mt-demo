@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="m-products-list">
     <!-- Intelligent sorting -->
     <dl>
@@ -7,7 +7,9 @@
         :key="item.name"
         :class="[item.active === true ? 's-nav-active' : '']"
         @click="navSelect(item.txt, index)"
-      >{{ item.txt }}</dd>
+      >
+        {{ item.txt }}
+      </dd>
     </dl>
     <ul>
       <Item
@@ -67,25 +69,25 @@ export default {
     navSelect(txt, index) {
       if (txt === '价格最低') {
         this.list.sort((a, b) => a.price - b.price)
-        this.nav.forEach(item => {
+        this.nav.forEach((item) => {
           item.active = false
         })
         this.nav[index].active = true
       } else if (txt === '人气最高') {
         this.list.sort((a, b) => b.comment - a.comment)
-        this.nav.forEach(item => {
+        this.nav.forEach((item) => {
           item.active = false
         })
         this.nav[index].active = true
       } else if (txt === '评价最高') {
         this.list.sort((a, b) => b.rate - a.rate)
-        this.nav.forEach(item => {
+        this.nav.forEach((item) => {
           item.active = false
         })
         this.nav[index].active = true
       } else if (txt === '智能排序') {
         this.list.sort((a, b) => a.name.charCodeAt(0) - b.name.charCodeAt(0))
-        this.nav.forEach(item => {
+        this.nav.forEach((item) => {
           item.active = false
         })
         this.nav[index].active = true

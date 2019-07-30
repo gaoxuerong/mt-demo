@@ -1,7 +1,8 @@
-﻿<template>
+<template>
   <li
     v-if="meta.photos.length"
-    class="m-detail-item">
+    class="m-detail-item"
+  >
     <dl class="section">
       <dd>
         <img
@@ -24,7 +25,9 @@
         <el-button
           type="warning"
           round
-          @click="createCart">立即抢购
+          @click="createCart"
+        >
+          立即抢购
         </el-button>
       </dd>
     </dl>
@@ -42,8 +45,8 @@ export default {
     }
   },
   methods: {
-    createCart: async function() {
-      const { status, data: { code, id }} = await this.$axios.post('/cart/create', {
+    createCart: async function () {
+      const { status, data: { code, id } } = await this.$axios.post('/cart/create', {
         params: {
           id: Math.random().toString().slice(3, 9),
           detail: {
@@ -56,7 +59,7 @@ export default {
       if (status === 200 && code === 0) {
         window.location.href = `/cart/?id=${id}`
       } else {
-        console.log('error')
+        // console.log('error')
       }
     }
   }
