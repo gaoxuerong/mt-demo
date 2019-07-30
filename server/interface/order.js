@@ -1,7 +1,7 @@
-import Router from 'koa-router'
-import md5 from 'crypto-js/md5'
-import Order from '../dbs/models/order'
-import Cart from '../dbs/models/cart'
+const Router = require( 'koa-router')
+const md5 = require( 'crypto-js/md5')
+const Order = require( '../dbs/models/order')
+const Cart = require( '../dbs/models/cart')
 // 加密
 
 const router = new Router({ prefix: '/order' })
@@ -82,4 +82,4 @@ router.post('/getOrders', async (ctx) => {
   }
 })
 
-export default router
+module.exports = router
