@@ -3,15 +3,6 @@ const state = () => ({
   hotPlace: []
 })
 
-const mutations = {
-  setMenu(state, val) {
-    state.menu = val
-  },
-  setHotPlace(state, val) {
-    state.hotPlace = val
-  }
-}
-
 const actions = {
   setMenu: ({ commit }, menu) => {
     commit('setMenu', menu)
@@ -24,6 +15,5 @@ const actions = {
 export default {
   namespaced: true,
   state,
-  mutations,
   actions
 }

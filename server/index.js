@@ -11,6 +11,7 @@ const dbConfig = require('./dbs/config.js')
 const passport = require('./interface/utils/passport.js')
 const users = require('./interface/users.js')
 const geo = require('./interface/geo')
+const search = require('./interface/search')
 const app = new Koa()
 const host = process.env.HOST || 'localhost'
 const port = process.env.PORT || 3000
@@ -53,6 +54,7 @@ async function start() {
   }
   app.use(users.routes()).use(users.allowedMethods())
   app.use(geo.routes()).use(geo.allowedMethods())
+  app.use(search.routes()).use(search.allowedMethods())
   app.use((ctx) => {
     ctx.status = 200
     return new Promise((resolve, reject) => {
