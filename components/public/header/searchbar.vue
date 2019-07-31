@@ -25,69 +25,70 @@
             @input="input"
           />
           <button class="el-button el-button--primary">
-            <i class="el-icon-search" />
+            <i class="el-icon-search"/>
           </button>
           <dl
             v-if="isHotPlace"
             class="hotPlace"
           >
             <dt>热门搜索</dt>
-            <dd v-for="(item,index) in hotPlace" :key="index">
-              <a>{{ item }}</a>
+            <dd
+              v-for="(item, index) in $store.state.search.hotPlace.slice(0, 4)"
+              :key="index"
+            >
+              <a :href="'/products?keyword=' + encodeURIComponent(item.name)">{{ item.name }}</a>
             </dd>
           </dl>
           <dl
             v-if="isSearchList"
             class="searchList"
           >
-            <dd v-for="(item,index) in searchList" :key="index">
-              <a>{{ item }}</a>
+            <dd
+              v-for="(item, index) in searchList"
+              :key="index"
+            >
+              <a :href="'/products?keyword=' + encodeURIComponent(item.name)">{{ item.name }}</a>
             </dd>
           </dl>
         </div>
+        <!-- 十指恋时尚美甲 -->
         <div class="suggset">
-          <a />
+          <a
+            v-for="(item, index) in $store.state.search.hotPlace.slice(0, 4)"
+            :key="index"
+            :href="'/products?keyword=' + encodeURIComponent(item.name)"
+          >{{ item.name }}</a>
         </div>
         <ul class="nav">
           <li>
             <nuxt-link
               to="/"
               class="takeout"
-            >
-              美团外卖
-            </nuxt-link>
+            >美团外卖</nuxt-link>
           </li>
           <li>
             <nuxt-link
               to="/"
               class="movie"
-            >
-              猫眼电影
-            </nuxt-link>
+            >猫眼电影</nuxt-link>
           </li>
           <li>
             <nuxt-link
               to="/"
               class="hotel"
-            >
-              美团酒店
-            </nuxt-link>
+            >美团酒店</nuxt-link>
           </li>
           <li>
             <nuxt-link
               to="/"
               class="apartment"
-            >
-              民宿/公寓
-            </nuxt-link>
+            >民宿/公寓</nuxt-link>
           </li>
           <li>
             <nuxt-link
               to="/"
               class="business"
-            >
-              商家入驻
-            </nuxt-link>
+            >商家入驻</nuxt-link>
           </li>
         </ul>
       </el-col>
@@ -97,22 +98,16 @@
       >
         <ul class="security">
           <li>
-            <i class="refund" />
-            <p class="txt">
-              随时退
-            </p>
+            <i class="refund"/>
+            <p class="txt">随时退</p>
           </li>
           <li>
-            <i class="single" />
-            <p class="txt">
-              不满意免单
-            </p>
+            <i class="single"/>
+            <p class="txt">不满意免单</p>
           </li>
           <li>
-            <i class="overdue" />
-            <p class="txt">
-              过期退
-            </p>
+            <i class="overdue"/>
+            <p class="txt">过期退</p>
           </li>
         </ul>
       </el-col>
@@ -121,15 +116,16 @@
 </template>
 
 <script>
+import _ from 'lodash'
 
 export default {
   data() {
     return {
-      search: '',
+      search: '', // search value of the search box
       isFocus: false,
-      hotPlace: ['ggg', 'ggg', 'ggg'],
-      searchList: ['111', '111', '111'],
-      inputValue: false
+      hotPlace: [],
+      searchList: [],
+      inputValue: false // search box has search value, blank space it's false
     }
   },
   computed: {
@@ -150,13 +146,22 @@ export default {
         this.inputValue = false
       }, 200)
     },
-    input() {
+    input: _.debounce(async function() { // _.debounce: Delay function
+      this.searchList = []
+      const city = this.$store.state.geo.position.city.replace('市', '')
+      const { data: { top }} = await this.$axios.get('/search/top', {
+        params: { // pass to search.js parameter
+          input: this.search,
+          city
+        }
+      })
+      this.searchList = top.slice(0, 10)
       if (this.search === '') {
         this.inputValue = false
       } else {
         this.inputValue = true
       }
-    }
+    }, 300)
   }
 }
 </script>
