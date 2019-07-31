@@ -1,6 +1,6 @@
-const Router = require( 'koa-router')
-const md5 = require( 'crypto-js/md5')
-const Cart = require( '../dbs/models/cart')
+const Router = require('koa-router')
+const md5 = require('crypto-js/md5')
+const Cart = require('../dbs/models/cart')
 
 const router = new Router({
   prefix: '/cart'

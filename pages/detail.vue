@@ -63,7 +63,7 @@ export default {
   async asyncData(ctx) {
     const { status, data: { product, more: list, login, type, keyword } } = await ctx.$axios.get('/search/products', {
       params: {
-        city: ctx.store.state.geo.position.city
+        city: ctx.store.state.position.city
       }
     })
     // console.log(login, product, list)

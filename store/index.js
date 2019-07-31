@@ -1,12 +1,14 @@
-const Vue = require('vue')
+// const Vue = require('vue')
 const Vuex = require('vuex')
 
-Vue.use(Vuex)
+// Vue.use(Vuex)
 
 const store = () =>
   new Vuex.Store({
     state: () => ({
-      position: {}
+      position: {},
+      menu: [],
+      hotPlace: []
     }),
     mutations: {
       setPosition(state, val) {
@@ -26,6 +28,15 @@ const store = () =>
       }
     },
     actions: {
+      setMenu: ({ commit }, menu) => {
+        commit('setMenu', menu)
+      },
+      setHotPlace: ({ commit }, hotPlace) => {
+        commit('setHotPlace', hotPlace)
+      },
+      setPosition: ({ commit }, position) => {
+        commit('setPosition', position)
+      },
       async nuxtServerInit({ commit }, { req, app }) {
         {
           const {
@@ -39,7 +50,7 @@ const store = () =>
             status,
             data: { menu }
           } = await app.$axios.get('/geo/menu')
-          commit('home/setMenu', status === 200 ? menu : [])
+          commit('setMenu', status === 200 ? menu : [])
         }
         {
           const {
@@ -50,7 +61,7 @@ const store = () =>
               city: app.store.state.position.city.replace('市', '')
             }
           })
-          commit('search/setHotPlace', status === 200 ? result : [])
+          commit('setHotPlace', status === 200 ? result : [])
         }
       }
     }

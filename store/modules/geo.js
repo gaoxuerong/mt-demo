@@ -1,15 +1,15 @@
-﻿const state = () => ({
-  position: {}
-})
+// const state = () => ({
+//   position: {}
+// })
 
-const actions = {
-  setPosition: ({ commit }, position) => {
-    commit('setPosition', position)
-  }
-}
+// const actions = {
+//   setPosition: ({ commit }, position) => {
+//     commit('setPosition', position)
+//   }
+// }
 
-export default {
-  namespaced: true,
-  state,
-  actions
-}
+// export default {
+//   namespaced: true,
+//   state,
+//   actions
+// }

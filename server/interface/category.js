@@ -25,7 +25,7 @@ router.get('/crumbs', async (ctx) => {
   //     types: []
   //   }
   // }
-  const { status, data: { areas, types }} = await axios.get(`${Config.requestUrl}/categroy/crumbs`, {
+  const { status, data: { areas, types } } = await axios.get(`${Config.requestUrl}/categroy/crumbs`, {
     params: {
       city: ctx.query.city.replace('市', '') || '北京',
       sign

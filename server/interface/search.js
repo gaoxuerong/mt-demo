@@ -30,7 +30,7 @@ router.get('/top', async (ctx) => {
   //     top: []
   //   }
   // }
-  const { status, data: { top }} = await axios.get(`${Config.requestUrl}/search/top`, {
+  const { status, data: { top } } = await axios.get(`${Config.requestUrl}/search/top`, {
     params: {
       input: ctx.query.input,
       city: ctx.query.city,
@@ -67,7 +67,7 @@ router.get('/hotPlace', async (ctx) => {
   //   }
   // }
   const city = ctx.store ? ctx.store.geo.position.city : ctx.query.city
-  const { status, data: { result }} = await axios.get(`${Config.requestUrl}/search/hotPlace`, {
+  const { status, data: { result } } = await axios.get(`${Config.requestUrl}/search/hotPlace`, {
     params: {
       sign,
       city
@@ -92,7 +92,7 @@ router.get('/resultsByKeywords', async (ctx) => {
   //   }
   // }
   const { city, keyword } = ctx.query
-  const { status, data: { count, pois }} = await axios.get(`${Config.requestUrl}/search/resultsByKeywords`, {
+  const { status, data: { count, pois } } = await axios.get(`${Config.requestUrl}/search/resultsByKeywords`, {
     params: {
       city,
       keyword,
@@ -128,7 +128,7 @@ router.get('/products', async (ctx) => {
   // }
   const keyword = ctx.query.keyword || '旅游'
   const city = ctx.query.city || '北京'
-  const { status, data: { product, more }} = await axios.get(`${Config.requestUrl}/search/products`, {
+  const { status, data: { product, more } } = await axios.get(`${Config.requestUrl}/search/products`, {
     params: {
       keyword,
       city,

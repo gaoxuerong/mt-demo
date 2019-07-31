@@ -25,7 +25,7 @@
             @input="input"
           />
           <button class="el-button el-button--primary">
-            <i class="el-icon-search"/>
+            <i class="el-icon-search" />
           </button>
           <dl
             v-if="isHotPlace"
@@ -33,7 +33,7 @@
           >
             <dt>热门搜索</dt>
             <dd
-              v-for="(item, index) in $store.state.search.hotPlace.slice(0, 4)"
+              v-for="(item, index) in this.$store.state.hotPlace.slice(0, 4)"
               :key="index"
             >
               <a :href="'/products?keyword=' + encodeURIComponent(item.name)">{{ item.name }}</a>
@@ -54,7 +54,7 @@
         <!-- 十指恋时尚美甲 -->
         <div class="suggset">
           <a
-            v-for="(item, index) in $store.state.search.hotPlace.slice(0, 4)"
+            v-for="(item, index) in this.$store.state.hotPlace.slice(0, 4)"
             :key="index"
             :href="'/products?keyword=' + encodeURIComponent(item.name)"
           >{{ item.name }}</a>
@@ -64,31 +64,41 @@
             <nuxt-link
               to="/"
               class="takeout"
-            >美团外卖</nuxt-link>
+            >
+              美团外卖
+            </nuxt-link>
           </li>
           <li>
             <nuxt-link
               to="/"
               class="movie"
-            >猫眼电影</nuxt-link>
+            >
+              猫眼电影
+            </nuxt-link>
           </li>
           <li>
             <nuxt-link
               to="/"
               class="hotel"
-            >美团酒店</nuxt-link>
+            >
+              美团酒店
+            </nuxt-link>
           </li>
           <li>
             <nuxt-link
               to="/"
               class="apartment"
-            >民宿/公寓</nuxt-link>
+            >
+              民宿/公寓
+            </nuxt-link>
           </li>
           <li>
             <nuxt-link
               to="/"
               class="business"
-            >商家入驻</nuxt-link>
+            >
+              商家入驻
+            </nuxt-link>
           </li>
         </ul>
       </el-col>
@@ -98,16 +108,22 @@
       >
         <ul class="security">
           <li>
-            <i class="refund"/>
-            <p class="txt">随时退</p>
+            <i class="refund" />
+            <p class="txt">
+              随时退
+            </p>
           </li>
           <li>
-            <i class="single"/>
-            <p class="txt">不满意免单</p>
+            <i class="single" />
+            <p class="txt">
+              不满意免单
+            </p>
           </li>
           <li>
-            <i class="overdue"/>
-            <p class="txt">过期退</p>
+            <i class="overdue" />
+            <p class="txt">
+              过期退
+            </p>
           </li>
         </ul>
       </el-col>
@@ -146,10 +162,10 @@ export default {
         this.inputValue = false
       }, 200)
     },
-    input: _.debounce(async function() { // _.debounce: Delay function
+    input: _.debounce(async function () { // _.debounce: Delay function
       this.searchList = []
-      const city = this.$store.state.geo.position.city.replace('市', '')
-      const { data: { top }} = await this.$axios.get('/search/top', {
+      const city = this.$store.state.position.city.replace('市', '')
+      const { data: { top } } = await this.$axios.get('/search/top', {
         params: { // pass to search.js parameter
           input: this.search,
           city

@@ -6,11 +6,11 @@
     >
       <dt>全部分类</dt>
       <dd
-        v-for="(item, index) in $store.state.home.menu"
+        v-for="(item, index) in this.$store.state.menu"
         :key="index"
         @mouseenter="navEnter"
       >
-        <i :class="item.type"/>{{ item.name }}<span class="arrow"/>
+        <i :class="item.type" />{{ item.name }}<span class="arrow" />
       </dd>
     </dl>
     <div
@@ -20,7 +20,9 @@
       @mouseleave="detailLeave"
     >
       <template v-for="(item, index) in curdetail.child">
-        <h4 :key="index">{{ item.title }}</h4>
+        <h4 :key="index">
+          {{ item.title }}
+        </h4>
         <span
           v-for="v in item.child"
           :key="v"
@@ -34,27 +36,12 @@
 export default {
   data() {
     return {
-      kind: '' // record mouse hover state
-      // menu: [
-      //   {
-      //     type: 'food',
-      //     name: '美食',
-      //     child: [
-      //       {
-      //         title: '美食',
-      //         child: ['代金券', '甜点饮品', '火锅', '自助餐', '小吃快餐']
-      //       }
-      //     ]
-      //   },
-      // ]
+      kind: ''
     }
   },
   computed: {
-    curdetail() { // Current classification, After selecting an item on the left side the corresponding right side column data appears.(filter data) @return: filter data
-      // console.log(this.menu.filter((item)=>{ //  The printed result is an array, to get the content
-      //   return item.type === this.kind
-      // })[0])
-      return this.$store.state.home.menu.filter(item => {
+    curdetail() {
+      return this.$store.state.menu.filter((item) => {
         return item.type === this.kind
       })[0]
     }
