@@ -2,7 +2,7 @@
   <div class="page-changeCity">
     <el-row>
       <el-col :span="24">
-        <iSelect />
+        <i-select />
       </el-col>
     </el-row>
     <el-row>

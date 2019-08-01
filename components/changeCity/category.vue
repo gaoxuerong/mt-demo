@@ -46,21 +46,17 @@ export default {
       let p
       let c
       const d = {}
-      let wantArray
       for (const value of city) {
-        wantArray = [...value.value]
-        for (const value of wantArray) {
-          p = pyjs
-            .getFullChars(value.name)
-            .toLocaleLowerCase()
-            .slice(0, 1) // p: City initials lowercase pinyin
-          c = p.charCodeAt(0) // Initial letter lowercase pinyin ascii
-          if (c > 96 && c < 123) { // a-z
-            if (!d[p]) {
-              d[p] = []
-            }
-            d[p].push(value.name)
+        p = pyjs
+          .getFullChars(value.name)
+          .toLocaleLowerCase()
+          .slice(0, 1)
+        c = p.charCodeAt(0)
+        if (c > 96 && c < 123) {
+          if (!d[p]) {
+            d[p] = []
           }
+          d[p].push(value.name)
         }
       }
       for (const [k, v] of Object.entries(d)) { // Get the corresponding key-value pair

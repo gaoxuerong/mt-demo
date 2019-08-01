@@ -17,7 +17,6 @@
       v-model="cvalue"
       :disabled="!city.length"
       placeholder="城市"
-      @visible-change="ShandleSelect"
     >
       <el-option
         v-for="item in city"
@@ -113,29 +112,31 @@ export default {
       }
     }, 200),
     handleSelect(e) {
-      this.$store.commit('geo/setCity', e.value)
-    },
-    ShandleSelect: async function () {
-      // console.log(this.$refs.currentCity.value)
-      const temp = this.$refs.currentCity.value
-      const id = Math.floor(temp / 10000) * 10000
-      // commons.app.js:331 GET http://localhost:3000/geo/province/0 500 (Internal Server Error)
-      const { status, data: { city } } = await this.$axios.get(`/geo/province/${id}`)
-      if (status === 200) {
-        const provinceCity = city.map((item) => {
-          return {
-            id: item.id,
-            name: item.name
-          }
-        })
-        // console.log(provinceCity)
-        const currentCity = provinceCity.filter((item) => {
-          return item.id === temp
-        })
-        // console.log(currentCity[0].name)
-        this.$store.commit('geo/setCity', currentCity[0].name)
-      }
+      // this.$store.commit('geo/setCity', e.value)
     }
+    // ShandleSelect: function () {
+    // console.log(this.$refs.currentCity.value)
+    // const temp = this.$refs.currentCity.value
+    // const id = Math.floor(temp / 10000) * 10000
+    // console.log(temp)
+    // console.log(id)
+    // const { status, data: { city } } = await this.$axios.get(`/geo/province/${id}`)
+    // if (status === 200) {
+    // console.log(city)
+    // const provinceCity = city.map((item) => {
+    //   return {
+    //     id: item.id,
+    //     name: item.name
+    //   }
+    // })
+    // console.log(provinceCity)
+    // const currentCity = provinceCity.filter((item) => {
+    //   return item.id === temp
+    // })
+    // console.log(currentCity[0].name)
+    // this.$store.commit('geo/setCity', currentCity[0].name)
+    // }
+    // }
   }
 }
 </script>

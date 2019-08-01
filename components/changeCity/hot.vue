@@ -3,11 +3,11 @@
     <dl>
       <dt>热门城市：</dt>
       <dd
-        v-for="item in list"
-        :key="item.id"
-        @click="handleSelect(item.name)"
+        v-for="item of list"
+        :key="item"
+        @click="handleSelect(item)"
       >
-        {{ item.name }}
+        {{ item }}
       </dd>
     </dl>
   </div>
@@ -22,15 +22,13 @@ export default {
     }
   },
   async mounted() {
-    const { status, data: { city } } = await this.$axios.get('/geo/hotCity')
+    const { status, data: { hots } } = await this.$axios.get('/geo/hotCity')
     if (status === 200) {
-      let wantArray
-      for (const value of city) {
-        wantArray = [...value.value]
-        for (const value of wantArray) {
-          if (value.hot === true) {
-            this.list.push(value)
-          }
+      for (const value of hots) {
+        if (value.name === '市辖区') {
+          this.list.push(value.province)
+        } else {
+          this.list.push(value.name)
         }
       }
     }
