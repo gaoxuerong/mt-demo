@@ -43,11 +43,11 @@ export default {
   data() {
     return {
       province: [],
-      pvalue: '', // Current province
+      pvalue: '',
       city: [],
-      cvalue: '', // City under current provinces
+      cvalue: '',
       input: '',
-      cities: [] // National city list
+      cities: []
     }
   },
   watch: {
@@ -83,15 +83,14 @@ export default {
       if (this.cities.length) {
         cb(this.cities.filter(item => item.value.indexOf(query) > -1)) // Search 北 to show all data with 北
       } else {
-        // const { status, data: { city }} = await this.$axios.get('/geo/city', { params: { city: this.cvalue }}) // Online data
-        const { status, data: { city } } = await this.$axios.get('/geo/city') // Localized data
-        // console.log(city, -1)
+        const { status, data: { city } } = await this.$axios.get('/geo/city', { params: { city: this.cvalue } })
+        console.log(city)
         if (status === 200) {
           let wantArray
           const wantCityArray = []
           for (const value of city) {
             wantArray = [...value.value]
-            // console.log(wantArray, 2)
+            console.log(wantArray, 2)
             wantArray.map((item) => {
               // console.log(item.name)
               wantCityArray.push(item.name)
