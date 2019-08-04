@@ -41,8 +41,8 @@ export default {
     }
   },
   async asyncData(ctx) {
-    const keyword = ctx.query.keyword
-    const city = ctx.store.state.position.city
+    const keyword = (ctx.query.keyword)
+    const city = (ctx.store.state.position.city)
     const { status, data: { count, pois } } = await ctx.$axios.get('/search/resultsByKeywords', {
       params: {
         keyword,

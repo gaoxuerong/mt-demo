@@ -51,7 +51,6 @@
             </dd>
           </dl>
         </div>
-        <!-- 十指恋时尚美甲 -->
         <div class="suggset">
           <a
             v-for="(item, index) in this.$store.state.hotPlace.slice(0, 4)"
@@ -162,11 +161,11 @@ export default {
         this.inputValue = false
       }, 200)
     },
-    input: _.debounce(async function () { // _.debounce: Delay function
+    input: _.debounce(async function () {
       this.searchList = []
       const city = this.$store.state.position.city.replace('市', '')
       const { data: { top } } = await this.$axios.get('/search/top', {
-        params: { // pass to search.js parameter
+        params: {
           input: this.search,
           city
         }

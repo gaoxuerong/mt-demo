@@ -100,7 +100,7 @@ export default {
         return {
           title: item.name,
           pos: item.type.split(';')[0],
-          price: item.biz_ext.cost || '暂无',
+          price: item.biz_ext.cost ? item.biz_ext.cost : 0,
           img: item.photos[0].url,
           url: '//abc.com'
         }
@@ -112,7 +112,7 @@ export default {
   },
   methods: {
     over: async function (e) {
-      const dom = e.target // Current element
+      const dom = e.target
       const tag = dom.tagName.toLowerCase()
       if (tag === 'dd') {
         // this.kind = dom.getAttribute('kind')
@@ -123,33 +123,20 @@ export default {
             city: this.$store.state.position.city
           }
         })
-        // Local data
-        // const { status, data: { count, pois } } = await this.$axios.get('/search/resultsByKeywords')
         if (status === 200 && count > 0) {
           const r = pois
-            .filter(item => item.photos.length && item.kind === this.kind)
-            .map((item, index) => {
-              return {
-                title: item.name,
-                pos: item.type.split(';')[0],
-                price: item.biz_ext.cost || '暂无',
-                img: item.photos[0].url,
-                url: '//abc.com'
-              }
-            })
-          const all = pois
             .filter(item => item.photos.length)
             .map((item, index) => {
               return {
                 title: item.name,
                 pos: item.type.split(';')[0],
-                price: item.biz_ext.cost || '暂无',
+                price: item.biz_ext.cost ? item.biz_ext.cost : 0,
                 img: item.photos[0].url,
                 url: '//abc.com'
               }
             })
-          this.list[this.kind] = r.slice(0, 9) // add data
-          this.list.all = all.slice(0, 9)
+          this.list[this.kind] = r.slice(0, 9)
+          // this.list.all = all.slice(0, 9)
         } else {
           this.list[this.kind] = []
         }

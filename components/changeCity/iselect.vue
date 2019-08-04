@@ -79,31 +79,17 @@ export default {
     ...mapMutations({
       setPosition: 'geo/setPosition'
     }),
-    querySearchAsync: _.debounce(async function (query, cb) { // _.debounce() Delay function
+    querySearchAsync: _.debounce(async function (query, cb) {
       if (this.cities.length) {
-        cb(this.cities.filter(item => item.value.indexOf(query) > -1)) // Search 北 to show all data with 北
+        cb(this.cities.filter(item => item.value.indexOf(query) > -1))
       } else {
         const { status, data: { city } } = await this.$axios.get('/geo/city', { params: { city: this.cvalue } })
-        console.log(city)
         if (status === 200) {
-          let wantArray
-          const wantCityArray = []
-          for (const value of city) {
-            wantArray = [...value.value]
-            console.log(wantArray, 2)
-            wantArray.map((item) => {
-              // console.log(item.name)
-              wantCityArray.push(item.name)
-              // console.log(wantCityArray)
-            })
-          }
-          // console.log(wantCityArray, 3)
-          this.cities = wantCityArray.map((item) => {
+          this.cities = city.map((item) => {
             return {
-              value: item
+              value: item.name
             }
           })
-          // console.log(this.cities, 4)
           cb(this.cities.filter(item => item.value.indexOf(query) > -1))
         } else {
           // cb([])
@@ -111,31 +97,8 @@ export default {
       }
     }, 200),
     handleSelect(e) {
-      // this.$store.commit('geo/setCity', e.value)
+      this.$store.commit('geo/setCity', e.value)
     }
-    // ShandleSelect: function () {
-    // console.log(this.$refs.currentCity.value)
-    // const temp = this.$refs.currentCity.value
-    // const id = Math.floor(temp / 10000) * 10000
-    // console.log(temp)
-    // console.log(id)
-    // const { status, data: { city } } = await this.$axios.get(`/geo/province/${id}`)
-    // if (status === 200) {
-    // console.log(city)
-    // const provinceCity = city.map((item) => {
-    //   return {
-    //     id: item.id,
-    //     name: item.name
-    //   }
-    // })
-    // console.log(provinceCity)
-    // const currentCity = provinceCity.filter((item) => {
-    //   return item.id === temp
-    // })
-    // console.log(currentCity[0].name)
-    // this.$store.commit('geo/setCity', currentCity[0].name)
-    // }
-    // }
   }
 }
 </script>

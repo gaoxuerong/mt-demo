@@ -1,22 +1,12 @@
 const Router = require('koa-router')
 const Config = require('../dbs/config')
 const axios = require('./utils/axios')
-// const Province = require( '../dbs/models/province')
-// const Menu  = require( '../dbs/models/menu')
-// const City  = require( '../dbs/models/city')
-// const Positon  = require( '../dbs/models/position')
-
 const router = new Router({
   prefix: '/geo'
 })
 const sign = Config.sign
 
 router.get('/getPosition', async (ctx) => {
-  // const result = await Positon.findOne()
-  // ctx.body = {
-  //   province: result.province,
-  //   city: result.city
-  // }
   const {
     status,
     data: { province, city }
@@ -35,10 +25,6 @@ router.get('/getPosition', async (ctx) => {
 })
 
 router.get('/menu', async (ctx) => {
-  // const result = await Menu.findOne()
-  // ctx.body = {
-  //   menu: result.menu
-  // }
   const {
     status,
     data: { menu }
@@ -54,15 +40,6 @@ router.get('/menu', async (ctx) => {
   }
 })
 router.get('/province', async (ctx) => {
-  // const result = await Province.find()
-  // ctx.body = {
-  //   province: result.map(item => {
-  //     return {
-  //       id: item.id,
-  //       name: item.value[0]
-  //     }
-  //   })
-  // }
   const {
     status,
     data: { province }
@@ -73,13 +50,6 @@ router.get('/province', async (ctx) => {
 })
 
 router.get('/province/:id', async (ctx) => {
-  // const result = await City.findOne({ id: ctx.params.id })
-  // ctx.body = {
-  //   code: 0,
-  //   city: result.value.map(item => {
-  //     return { province: item.province, id: item.id, name: item.name }
-  //   })
-  // }
   const {
     status,
     data: { city }
@@ -98,14 +68,6 @@ router.get('/province/:id', async (ctx) => {
 })
 
 router.get('/city', async (ctx) => {
-  // const result = await City.find()
-  // ctx.body = {
-  //   city: result.map(item => {
-  //     return {
-  //       value: item.value
-  //     }
-  //   })
-  // }
   const {
     status,
     data: { city }
@@ -122,16 +84,6 @@ router.get('/city', async (ctx) => {
 })
 
 router.get('/hotCity', async (ctx) => {
-  // const result = await City.find() // bug! Did not return the full city name
-  // ctx.body = {
-  //   city: result.map(item => {
-  //     const value = item.value
-  //     const valueArray = [...value]
-  //     return {
-  //       value: valueArray
-  //     }
-  //   })
-  // }
   const {
     status,
     data: { hots }
